@@ -9,6 +9,8 @@ public class Spawn_Controller : MonoBehaviour
     public GameObject Player;
 
     public float Spawn_Delay = 2;
+
+    public bool Can_Spawn = false;
     float time;
     public int Num_Spawners;
     // Start is called before the first frame update
@@ -23,11 +25,15 @@ public class Spawn_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time -= Time.deltaTime;
-        if (time < 0)
+        if (Can_Spawn)
         {
-            time = Spawn_Delay;
-            Spawners[Random.Range(0, Num_Spawners)].Spawn_Object_At_Player(Objects[Random.Range(0, Objects.Count)]);
+            time -= Time.deltaTime;
+            if (time < 0)
+            {
+                time = Spawn_Delay;
+                Spawners[Random.Range(0, Num_Spawners)].Spawn_Object_At_Player(Objects[Random.Range(0, Objects.Count)]);
+            }
         }
+
     }
 }
