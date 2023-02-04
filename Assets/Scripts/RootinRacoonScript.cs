@@ -43,7 +43,8 @@ public class RootinRacoonScript : MonoBehaviour
     void Update()
     {
         moveDirection = movement.ReadValue<Vector2>();
-        rb.transform.Rotate(0, 0, rotateSpeed);
+        rb.transform.Rotate(moveDirection);
+        //rb.transform.Rotate(0, 0, rotateSpeed);
     }
 
     private void FixedUpdate()

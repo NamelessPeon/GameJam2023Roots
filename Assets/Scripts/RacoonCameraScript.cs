@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class RacoonCameraScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform target;
 
-    // Update is called once per frame
-    void Update()
+    public float smoothSpeed = 0.125f;
+
+    public Vector3 offset = Vector3.zero;
+
+    private void LateUpdate()
     {
-        
+        transform.position = target.position + offset;
     }
 }
