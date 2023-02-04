@@ -8,7 +8,7 @@ public class Spudacus_UI : MonoBehaviour
     public TextMeshProUGUI CountDown;
     public Spawn_Controller SpawnController;
 
-    float time = 3.0f;
+    float time = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class Spudacus_UI : MonoBehaviour
         if(time > 0)
         {
             time -= Time.deltaTime;
-            CountDown.text = System.Math.Round(time, 2).ToString();
+            CountDown.text = Mathf.RoundToInt(time).ToString();
             if (time < 0)
             {
                 CountDown.text = "0";
