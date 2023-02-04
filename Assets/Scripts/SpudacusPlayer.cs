@@ -17,8 +17,7 @@ public class SpudacusPlayer : MonoBehaviour
     public InputAction SheildRotate;
     public InputAction SheildSwap;
 
-    public Canvas UI;
-    public GameObject SpawnController;
+    public GameObject GameController;
 
     bool ShieldChange = false;
     // Start is called before the first frame update
@@ -79,8 +78,7 @@ public class SpudacusPlayer : MonoBehaviour
 
     public void SignalGameOver()
     {
-        UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
-        SpawnController.GetComponent<Spawn_Controller>().Can_Spawn = false;
+        GameController.GetComponent<SpudacusGameController>().GameOver();
     }
 
     private void OnTriggerEnter(Collider other)
