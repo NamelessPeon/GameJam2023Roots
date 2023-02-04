@@ -260,6 +260,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11064073}
   m_CullTransparentMesh: 1
+--- !u!114 &48810258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7579260555415538037, guid: eb9e0560b0539ff44820e8d2fcd30833, type: 3}
+  m_PrefabInstance: {fileID: 53878691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a6d2130f6561e4290419add3781dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &53878691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,15 +300,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 660382737345033931, guid: eb9e0560b0539ff44820e8d2fcd30833, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 660382737345033931, guid: eb9e0560b0539ff44820e8d2fcd30833, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 660382737345033931, guid: eb9e0560b0539ff44820e8d2fcd30833, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 660382737345033931, guid: eb9e0560b0539ff44820e8d2fcd30833, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -451,7 +462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729cdb58afee9524596604de99502c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CountDown: {fileID: 0}
+  CountDown: {fileID: 11064076}
+  SpawnController: {fileID: 48810258}
 --- !u!1 &1268862853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6291818739808455064, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
@@ -899,6 +911,10 @@ PrefabInstance:
     - target: {fileID: 6291818739808455064, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291818739808455065, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7700558002891450095, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
       propertyPath: m_Convex
