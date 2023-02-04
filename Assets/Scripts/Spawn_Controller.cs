@@ -34,6 +34,5 @@ public class Spawn_Controller : MonoBehaviour
                 Spawners[Random.Range(0, Num_Spawners)].Spawn_Object_At_Player(Objects[Random.Range(0, Objects.Count)]);
             }
         }
-
     }
 }

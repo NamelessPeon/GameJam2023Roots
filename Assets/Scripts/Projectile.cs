@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.name == "SpudacusPlayer")
         {
+            other.GetComponent<SpudacusPlayer>().SignalGameOver();
             Destroy(this.gameObject);
         }
     }

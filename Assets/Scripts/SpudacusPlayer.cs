@@ -17,6 +17,9 @@ public class SpudacusPlayer : MonoBehaviour
     public InputAction SheildRotate;
     public InputAction SheildSwap;
 
+    public Canvas UI;
+    public GameObject SpawnController;
+
     bool ShieldChange = false;
     // Start is called before the first frame update
     void Start()
@@ -70,8 +73,14 @@ public class SpudacusPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Shield.transform.Rotate(new Vector3(0, 0, shieldRotSpeed * RotateDirection) * Time.deltaTime);
+        if ((Shield.transform.rotation.z > -0.64 && RotateDirection == -1) || Shield.transform.rotation.z < 0.64 && RotateDirection == 1)
+            Shield.transform.Rotate(new Vector3(0, 0, shieldRotSpeed * RotateDirection) * Time.deltaTime);
+    }
 
+    public void SignalGameOver()
+    {
+        UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
+        SpawnController.GetComponent<Spawn_Controller>().Can_Spawn = false;
     }
 
     private void OnTriggerEnter(Collider other)
