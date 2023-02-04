@@ -26,7 +26,7 @@ public class SpudacusPlayer : MonoBehaviour
     void Update()
     {
         //Debug.Log(Shield.transform.rotation.z);
-        Debug.Log(curShield);
+        //Debug.Log(curShield);
         if (Input.GetKey(KeyCode.D) && Shield.transform.rotation.z > -0.5)
             Shield.transform.Rotate(new Vector3(0, 0, shieldRotSpeed * -1) * Time.deltaTime);
         else if (Input.GetKey(KeyCode.A) && Shield.transform.rotation.z < 0.5)
@@ -46,9 +46,18 @@ public class SpudacusPlayer : MonoBehaviour
         }
     }
 
-//    public void rotateShield(InputAction.CallbackContext context)
-//    {
-//        Debug.Log("Hello");
-//        rotateDir = context.ReadValue<float>();
-//    }
+    //    public void rotateShield(InputAction.CallbackContext context)
+    //    {
+    //        Debug.Log("Hello");
+    //        rotateDir = context.ReadValue<float>();
+    //    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.name == "Potato_Projectile(Clone)" && curShield == shieldType.Potato)
+            Destroy(other.gameObject);
+        if (other.gameObject.name == "Carrot_Projectile(Clone)" && curShield == shieldType.Carrot)
+            Destroy(other.gameObject);
+    }
 }
