@@ -14,8 +14,7 @@ public class SpudacusPlayer : MonoBehaviour
     private GameObject PotatoShield;
     private GameObject CarrotShield;
 
-    public InputAction ControllerRotate;
-    public InputAction KeyboardRotate;
+    public InputAction SheildRotate;
     public InputAction SheildSwap;
 
     bool ShieldChange = false;
@@ -25,28 +24,28 @@ public class SpudacusPlayer : MonoBehaviour
         Shield = transform.GetChild(0).gameObject;
         PotatoShield = Shield.transform.GetChild(0).gameObject;
         CarrotShield = Shield.transform.GetChild(1).gameObject;
+        
     }
 
     private void OnEnable()
     {
-        ControllerRotate.Enable();
-        KeyboardRotate.Enable();
+        SheildRotate.Enable();
         SheildSwap.Enable();
     }
 
     private void OnDisable()
     {
-        ControllerRotate.Disable();
-        KeyboardRotate.Disable();
+        SheildRotate.Disable();
         SheildSwap.Disable();
     }
     // Update is called once per frame
     void Update()
     {
-        RotateDirection = ControllerRotate.ReadValue<float>();
-        RotateDirection = KeyboardRotate.ReadValue<float>();
 
-        if(SheildSwap.ReadValue<float>() == 0 && ShieldChange == true)
+        RotateDirection = SheildRotate.ReadValue<float>();
+
+
+        if (SheildSwap.ReadValue<float>() == 0 && ShieldChange == true)
             ShieldChange = false;
 
         if(SheildSwap.ReadValue<float>() != 0 && ShieldChange == false)

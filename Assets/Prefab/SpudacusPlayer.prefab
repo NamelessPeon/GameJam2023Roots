@@ -382,7 +382,31 @@ MonoBehaviour:
     m_Id: 513f2c1e-f7ed-4958-807e-1e808f5f91f7
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 00877eea-5994-41ae-aa91-13e3e7d27f09
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Keyboard Rotate
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 79cebc25-7651-44c7-a9ba-251bfc7044eb
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Keyboard Rotate
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 6e50567c-e569-4d57-9fe9-da4b5a78f569
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Keyboard Rotate
+      m_Flags: 8
     m_Flags: 0
   SheildSwap:
     m_Name: Sheild Swap
@@ -391,7 +415,15 @@ MonoBehaviour:
     m_Id: 7781511c-6ede-43d9-996c-2d11e56ec2bb
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 874fb186-db2c-438e-96b0-40a41ea32211
+      m_Path: <Keyboard>/space
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sheild Swap
+      m_Flags: 0
     m_Flags: 0
 --- !u!54 &6635098761556464278
 Rigidbody:
