@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 91a0762417d51bc459861a776b1a78c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 6291818739808455065}
   - component: {fileID: 3076703953500085897}
   - component: {fileID: 6291818739808455045}
+  - component: {fileID: 9044468534802868811}
   m_Layer: 0
   m_Name: SpudacusPlayer
   m_TagString: Untagged
@@ -212,8 +213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldRotSpeed: 100
   curShield: 0
-  potatoShield_MAT: {fileID: 0}
-  carrotShield_MAT: {fileID: 0}
+  potatoShield_MAT: {fileID: 2100000, guid: 91a0762417d51bc459861a776b1a78c7, type: 2}
+  carrotShield_MAT: {fileID: 2100000, guid: 6f308350acd420a4c9e3b5c5ca12438d, type: 2}
 --- !u!114 &6291818739808455045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +261,22 @@ MonoBehaviour:
   m_DefaultActionMap: Spudacus
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &9044468534802868811
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291818739808455064}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &9178892727742884459
 GameObject:
   m_ObjectHideFlags: 0

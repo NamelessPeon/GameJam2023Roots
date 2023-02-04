@@ -54,7 +54,6 @@ public class SpudacusPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.name == "Potato_Projectile(Clone)" && curShield == shieldType.Potato)
             Destroy(other.gameObject);
         if (other.gameObject.name == "Carrot_Projectile(Clone)" && curShield == shieldType.Carrot)

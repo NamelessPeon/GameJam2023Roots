@@ -16,4 +16,13 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(new Vector3(0, 0, Speed) * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "SpudacusPlayer")
+        {
+            Debug.Log("hit player");
+            Destroy(this.gameObject);
+        }
+    }
 }
