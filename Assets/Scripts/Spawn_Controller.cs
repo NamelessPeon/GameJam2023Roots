@@ -12,7 +12,7 @@ public class Spawn_Controller : MonoBehaviour
 
     public bool Can_Spawn = false;
     float time;
-    public int Num_Spawners;
+    private int Num_Spawners;
     // Start is called before the first frame update
     void Start()
     {
