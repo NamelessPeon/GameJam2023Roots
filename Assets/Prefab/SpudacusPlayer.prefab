@@ -111,8 +111,11 @@ GameObject:
   - component: {fileID: 6291818739808455066}
   - component: {fileID: 6291818739808455065}
   - component: {fileID: 3076703953500085897}
+<<<<<<< Updated upstream
   - component: {fileID: 6291818739808455045}
   - component: {fileID: 9044468534802868811}
+=======
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: SpudacusPlayer
   m_TagString: Untagged
@@ -213,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldRotSpeed: 100
   curShield: 0
+<<<<<<< Updated upstream
   potatoShield_MAT: {fileID: 2100000, guid: 91a0762417d51bc459861a776b1a78c7, type: 2}
   carrotShield_MAT: {fileID: 2100000, guid: 6f308350acd420a4c9e3b5c5ca12438d, type: 2}
 --- !u!114 &6291818739808455045
@@ -277,6 +281,93 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+=======
+  potatoShield_MAT: {fileID: 0}
+  carrotShield_MAT: {fileID: 0}
+  ControllerRotate:
+    m_Name: Controller Rotate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7a2d2880-764d-42f7-83a9-03ad3832d8a4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 8ae16b88-73e0-4c9b-81e5-72ab8f06996a
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Controller Rotate
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 49d4b0cf-a1a9-42c7-b40a-cf5cf8263cb8
+      m_Path: <XInputController>/leftStick/x
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Controller Rotate
+      m_Flags: 8
+    m_Flags: 0
+  KeyboardRotate:
+    m_Name: Keyboard Rotate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 11c516cb-1b38-48db-9bd5-bf455529cf17
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 24c79be7-4d0e-4e35-9284-5d163ea18847
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Keyboard Rotate
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 7bb5665d-01cc-4bab-8186-616c17686f6d
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Keyboard Rotate
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 1b5d49e1-6eea-4e48-a67d-d2cc9ac7c8d6
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Keyboard Rotate
+      m_Flags: 8
+    m_Flags: 0
+  SheildSwap:
+    m_Name: Sheild Swap
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 449cbeeb-2868-423b-b1f9-eb7fc578b8fd
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 329bef8e-70c4-4ad2-a5d1-8b0d7ee9251e
+      m_Path: <Keyboard>/space
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sheild Swap
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 1498dcd0-a1fe-487c-863d-56d4f3fb0700
+      m_Path: <XInputController>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sheild Swap
+      m_Flags: 0
+    m_Flags: 0
+>>>>>>> Stashed changes
 --- !u!1 &9178892727742884459
 GameObject:
   m_ObjectHideFlags: 0
