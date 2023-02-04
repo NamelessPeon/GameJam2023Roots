@@ -18,6 +18,8 @@ public class SpudacusGameController : MonoBehaviour
     public float tutorialTimer = 5;
     public gameDifficulty curDifficulty = gameDifficulty.Easy;
 
+    private AudioSource[] music;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class SpudacusGameController : MonoBehaviour
         {
             gameTimer = 30;
         }
+        music = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,10 @@ public class SpudacusGameController : MonoBehaviour
             SpawnController.GetComponent<Spawn_Controller>().Can_Spawn = false;
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
+
+        //Debug.Log(music[0].time);
+        if (music[0].time > 6.55)
+            music[1].Play();
     }
 
     public void GameOver()
