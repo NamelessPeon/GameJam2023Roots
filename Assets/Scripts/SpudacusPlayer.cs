@@ -5,15 +5,20 @@ using UnityEngine.InputSystem;
 
 public class SpudacusPlayer : MonoBehaviour
 {
-    private float rotateDir = 0f;
     public float shieldRotSpeed = 100f;
     private GameObject Shield;
+    private float RotateDirection = 0;
     public enum shieldType {Potato, Carrot};
     public shieldType curShield = shieldType.Potato;
     private Renderer shieldRend;
     [SerializeField] Material potatoShield_MAT;
     [SerializeField] Material carrotShield_MAT;
-    
+
+    public InputAction ControllerRotate;
+    public InputAction KeyboardRotate;
+    public InputAction SheildSwap;
+
+    bool ShieldChange = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +27,29 @@ public class SpudacusPlayer : MonoBehaviour
         shieldRend.material = potatoShield_MAT;
     }
 
+    private void OnEnable()
+    {
+        ControllerRotate.Enable();
+        KeyboardRotate.Enable();
+        SheildSwap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        ControllerRotate.Disable();
+        KeyboardRotate.Disable();
+        SheildSwap.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Shield.transform.rotation.z);
-        //Debug.Log(curShield);
-        if (Input.GetKey(KeyCode.D) && Shield.transform.rotation.z > -0.5)
-            Shield.transform.Rotate(new Vector3(0, 0, shieldRotSpeed * -1) * Time.deltaTime);
-        else if (Input.GetKey(KeyCode.A) && Shield.transform.rotation.z < 0.5)
-            Shield.transform.Rotate(new Vector3(0, 0, shieldRotSpeed * 1) * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.Space))
+        RotateDirection = ControllerRotate.ReadValue<float>();
+        RotateDirection = KeyboardRotate.ReadValue<float>();
+
+        if(SheildSwap.ReadValue<float>() == 0 && ShieldChange == true)
+            ShieldChange = false;
+
+        if(SheildSwap.ReadValue<float>() != 0 && ShieldChange == false)
         {
             if (curShield == shieldType.Potato)
             {
@@ -43,14 +61,17 @@ public class SpudacusPlayer : MonoBehaviour
                 curShield = shieldType.Potato;
                 shieldRend.material = potatoShield_MAT;
             }
+
+            ShieldChange = true;
         }
+
     }
 
-    //    public void rotateShield(InputAction.CallbackContext context)
-    //    {
-    //        Debug.Log("Hello");
-    //        rotateDir = context.ReadValue<float>();
-    //    }
+    private void FixedUpdate()
+    {
+        Shield.transform.Rotate(new Vector3(0, 0, shieldRotSpeed * RotateDirection) * Time.deltaTime);
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
