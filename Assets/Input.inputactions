@@ -1,0 +1,62 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "Spudacus",
+            "id": "55fe5c84-3d36-4dd1-bdc9-5a8f98405406",
+            "actions": [
+                {
+                    "name": "ShieldRotation",
+                    "type": "Value",
+                    "id": "65e3aa46-f162-4d0d-8b8b-df943ac9dd3e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "A/D",
+                    "id": "3ec74110-2535-4b36-b685-39b04af7b817",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShieldRotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "49d64aa6-5cd8-4728-b390-e87c05205e6b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ShieldRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "d6fc30d0-7dd9-41a6-933a-713aabdd8263",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ShieldRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": []
+        }
+    ]
+}
