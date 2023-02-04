@@ -10,9 +10,9 @@ public class SpudacusPlayer : MonoBehaviour
     private float RotateDirection = 0;
     public enum shieldType {Potato, Carrot};
     public shieldType curShield = shieldType.Potato;
-    private Renderer shieldRend;
-    [SerializeField] Material potatoShield_MAT;
-    [SerializeField] Material carrotShield_MAT;
+
+    private GameObject PotatoShield;
+    private GameObject CarrotShield;
 
     public InputAction ControllerRotate;
     public InputAction KeyboardRotate;
@@ -23,8 +23,8 @@ public class SpudacusPlayer : MonoBehaviour
     void Start()
     {
         Shield = transform.GetChild(0).gameObject;
-        shieldRend = Shield.transform.GetChild(0).GetComponent<Renderer>();
-        shieldRend.material = potatoShield_MAT;
+        PotatoShield = Shield.transform.GetChild(0).gameObject;
+        CarrotShield = Shield.transform.GetChild(1).gameObject;
     }
 
     private void OnEnable()
@@ -54,12 +54,14 @@ public class SpudacusPlayer : MonoBehaviour
             if (curShield == shieldType.Potato)
             {
                 curShield = shieldType.Carrot;
-                shieldRend.material = carrotShield_MAT;
+                CarrotShield.SetActive(true);
+                PotatoShield.SetActive(false);
             }
             else if (curShield == shieldType.Carrot)
             {
                 curShield = shieldType.Potato;
-                shieldRend.material = potatoShield_MAT;
+                CarrotShield.SetActive(false);
+                PotatoShield.SetActive(true);
             }
 
             ShieldChange = true;
