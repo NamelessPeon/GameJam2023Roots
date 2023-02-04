@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c572ea517ed76914cafb87c674e380ec
+  - enabled: 1
+    path: Assets/Scenes/RootingAround.unity
+    guid: bc1b6ec583eaa1f4ba5f87c8498502cc
+  - enabled: 1
+    path: Assets/Scenes/Spudacus.unity
+    guid: 3b794f6a58f25ec4b86d3c21e59911fe
+  - enabled: 1
+    path: Assets/Scenes/SwingingVine.unity
+    guid: c7da2038d4dfc844281f59f66b0f603b
   m_configObjects: {}
