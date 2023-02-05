@@ -42,20 +42,19 @@ public class RootinRacoonScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         moveDirection = movement.ReadValue<Vector2>();
 
-        rb.transform.Rotate(0, 0, rotateSpeed);
+        transform.Rotate(0, 0, rotateSpeed);
 
         transform.Rotate(0, 0, moveDirection.x * 200 * Time.deltaTime, Space.World);
 
-        transform.Translate(new Vector3(0, 0, moveDirection.y * 90 * Time.deltaTime));
-
+        //transform.Translate(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
+        //rb.MovePosition(transform.position + new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
+        rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));//new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
+        //rb.velocity = new Vector2(moveDirection.y * moveSpeed, 0);
     }
 
-    private void FixedUpdate()
-    {
-
-    }
+    
 }

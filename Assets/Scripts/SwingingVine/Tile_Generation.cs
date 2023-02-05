@@ -11,6 +11,7 @@ public class Tile_Generation : MonoBehaviour
     public GameObject groundTile;
     private float addNewTilePos;
     private bool lastTileWasGround = false;
+    private float tileScale = 6.0f;
 
     private List<GameObject> tileList = new List<GameObject>();
 
@@ -35,8 +36,8 @@ public class Tile_Generation : MonoBehaviour
             {
                 if (UnityEngine.Random.Range(0, 3) == 0) isHazardTile = true;
             }
-            SpawnTile(isGroundTile, isHazardTile, new Vector3(addNewTilePos + 16.0f, 0.0f, 0.0f));
-            addNewTilePos += 4.0f;
+            SpawnTile(isGroundTile, isHazardTile, new Vector3(addNewTilePos + (4.0f * tileScale), 0.0f, 0.0f));
+            addNewTilePos += tileScale;
 
             //Debug.Log(tileList.Count);
 
@@ -55,19 +56,19 @@ public class Tile_Generation : MonoBehaviour
     {
         if (isGroundTile)
         {
-            if (lastTileWasGround)
+            //if (lastTileWasGround)
             {
-                GameObject oldTile = tileList[tileList.Count-1];
+                /*GameObject oldTile = tileList[tileList.Count-1];
                 Vector3 newSize = oldTile.transform.localScale;
                 newSize.x *= 2;
                 tileList.RemoveAt(0);
                 Destroy(oldTile);
                 GameObject newTile = Instantiate(groundTile, pos, Quaternion.Euler(0, 0, 0));
                 newTile.transform.localScale = newSize;
-                tileList.Add(newTile);
+                tileList.Add(newTile);*/
 
             }
-            else
+            //else
             {
                 pos.y = -1.0f;
                 GameObject newTile = Instantiate(groundTile, pos, Quaternion.Euler(0, 0, 0));
