@@ -50,12 +50,15 @@ public class RootinRacoonScript : MonoBehaviour
 
         transform.Rotate(0, 0, moveDirection.x * 200 * Time.deltaTime, Space.World);
 
-        transform.Translate(new Vector3(0, 0, moveDirection.y * 90 * Time.deltaTime));
+        transform.Translate(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
 
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter(Collision collision)
     {
-
+        if (collision.gameObject.tag == "Wall")
+        {
+            transform.Translate(new Vector3(0, 0, moveDirection.y * -moveSpeed * Time.deltaTime));
+        }
     }
 }

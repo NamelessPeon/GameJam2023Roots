@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< Updated upstream
   - Kill_Box
   - Vine_Trigger
   - Hitbox
+=======
+  - Wall
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
