@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private bool startMoving = false;
     public InputAction jumpInput;
     public InputAction duckInput;
-    private float speed = 700.0f;
-    private float jumpSpeed = 7.0f;
+    public Camera cam;
+    public float speed = 700.0f;
+    public float jumpSpeed = 7.0f;
     private bool canJump = true;
+    private bool canDuck = true;
     Rigidbody rb;
 
     private void OnEnable()
@@ -28,12 +30,19 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        //Vector3 moveVector = new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
+        //rb.velocity = moveVector;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (startMoving)
         {
+
+            // Rotation b/c its funny
+            //transform.Rotate(new Vector3(0, 0, 15 * Time.deltaTime));
+
             // Move Player
             Vector3 moveVector = new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
             moveVector.y = rb.velocity.y;
@@ -44,15 +53,22 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log("Jump.");
                 //Debug.Log(canJump);
                 canJump = false;
-                moveVector.y = jumpSpeed;
+                moveVector.y = jumpSpeed * Time.deltaTime;
             }
             if (duckInput.ReadValue<float>() != 0)
             {
-                Debug.Log("Duck");
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+                cam.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                cam.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
             }
 
             // Apply Movement
             rb.velocity = moveVector;
+            //rb.AddRelativeForce(moveVector);
         }
         else if (duckInput.ReadValue<float>() != 0)
         {
@@ -76,9 +92,9 @@ public class PlayerMovement : MonoBehaviour
         {
             // Set collision w/ vine variable to true?
             //Debug.Log("Vine_Trigger Enter");
-            Vector3 tmpMoveVector = rb.velocity;
-            tmpMoveVector.y = 0.0f;
-            rb.velocity = tmpMoveVector;
+            //Vector3 tmpMoveVector = rb.velocity;
+            //tmpMoveVector.y = 0.0f;
+            //rb.velocity = tmpMoveVector;
 
             //
             //rb.useGravity = false;

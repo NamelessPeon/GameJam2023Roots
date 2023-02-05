@@ -9,6 +9,7 @@ public class Tile_Generation : MonoBehaviour
     public GameObject player;
     public GameObject vineTile;
     public GameObject groundTile;
+    public GameObject hazardTile;
     private float addNewTilePos;
     private bool lastTileWasGround = false;
     private float tileScale = 6.0f;
@@ -42,13 +43,10 @@ public class Tile_Generation : MonoBehaviour
             //Debug.Log(tileList.Count);
 
             // Remove Off-Screen Tiles
-            if (tileList.Count >= 10)
+            if (tileList.Count >= 15)
             {
-                GameObject oldTile = tileList[0];
-                tileList.RemoveAt(0);
-                Destroy(oldTile);
+                RemoveTile(0);
             }
-            //Destroy(tileArray[0]);
         }
     }
 
@@ -58,17 +56,31 @@ public class Tile_Generation : MonoBehaviour
         {
             //if (lastTileWasGround)
             {
+
                 /*GameObject oldTile = tileList[tileList.Count-1];
                 Vector3 newSize = oldTile.transform.localScale;
-                newSize.x *= 2;
-                tileList.RemoveAt(0);
-                Destroy(oldTile);
+                newSize.x += tileScale;
+                
                 GameObject newTile = Instantiate(groundTile, pos, Quaternion.Euler(0, 0, 0));
                 newTile.transform.localScale = newSize;
                 tileList.Add(newTile);*/
 
             }
             //else
+            if (isHazardTile)
+            {
+                // Because it is larger
+                pos.x += tileScale / 2.0f;
+                addNewTilePos += tileScale;
+
+                pos.y = -1.0f;
+                GameObject newTile = Instantiate(hazardTile, pos, Quaternion.Euler(0, 0, 0));
+                tileList.Add(newTile);
+                lastTileWasGround = true;
+
+                addNewTilePos += tileScale;
+            }
+            else
             {
                 pos.y = -1.0f;
                 GameObject newTile = Instantiate(groundTile, pos, Quaternion.Euler(0, 0, 0));
@@ -85,6 +97,12 @@ public class Tile_Generation : MonoBehaviour
             tileList.Add(newTile);
             lastTileWasGround = false;
         }
-        
+    }
+
+    void RemoveTile(int index)
+    {
+        GameObject oldTile = tileList[index];
+        tileList.RemoveAt(index);
+        Destroy(oldTile);
     }
 }
