@@ -24949,6 +24949,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 446685839}
     - target: {fileID: 6635098761556464276, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
+      propertyPath: shieldRotSpeed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635098761556464276, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
       propertyPath: SpawnController
       value: 
       objectReference: {fileID: 925764134}
