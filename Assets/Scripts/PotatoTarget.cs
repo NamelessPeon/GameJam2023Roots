@@ -5,22 +5,19 @@ using UnityEngine;
 
 public class PotatoTarget : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TargetManager targetManagerGameObject;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
- 
+        targetManagerGameObject = GameObject.FindGameObjectWithTag("TargetManager").GetComponent<TargetManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Potato")
         {
+            print("something");
+            targetManagerGameObject.numberOfTargets -= 1;
             Destroy(this.gameObject);
         }
     }

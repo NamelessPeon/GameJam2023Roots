@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Slingshot : MonoBehaviour
@@ -14,22 +15,27 @@ public class Slingshot : MonoBehaviour
     public Vector3 currentPosition;
 
     public float maxLength;
+    public float potatoOffset;
+    public float force;
 
     public GameObject potato_prefab;
 
     Rigidbody potato;
     Collider potatoCollider;
 
-    public float potatoOffset;
-
-    public float force;
+    public int throwsLeft = 5;
 
     bool isMouseDown;
-    bool isMouseUp;
+    private MasterGameController MasterController;
+
+    public ThrowScore throwScoreObject;
+
+    public PotatoYouDiedLoser gameOverScreen;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameOverScreen = GameObject.FindGameObjectWithTag("DeadImage").GetComponent<PotatoYouDiedLoser>();
         lineRenderers[0].positionCount = 2;
         lineRenderers[1].positionCount = 2;
         lineRenderers[0].SetPosition(0, stripPositions[0].position);
@@ -79,17 +85,23 @@ public class Slingshot : MonoBehaviour
 
         potato = null;
         potatoCollider = null;
+        throwsLeft -= 1;
+        throwScoreObject.UpdateScore(throwsLeft);
+        if (throwsLeft == 0)
+        {
+            if (MasterController)
+                Destroy(MasterController.gameObject);
+            SceneManager.LoadScene("MainMenu");
+        }
         Invoke("CreatePotato", 1);
     }
     private void OnMouseDown()
     {
         isMouseDown = true;
-        isMouseUp = false;
     }
 
     private void OnMouseUp()
     {
-        isMouseUp = true;
         isMouseDown = false;
         Shoot();
     }

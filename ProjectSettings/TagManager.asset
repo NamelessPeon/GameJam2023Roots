@@ -10,6 +10,9 @@ TagManager:
   - GameButton
   - Potato
   - MC
+  - Tile
+  - TargetManager
+  - DeadImage
   layers:
   - Default
   - TransparentFX
