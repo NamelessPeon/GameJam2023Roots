@@ -37,6 +37,11 @@ public class RootingUI : MonoBehaviour
 
     void Update()
     {
+        if (gameTimer > 0 && curState == gameState.Playing)
+        {
+            gameTimer -= Time.deltaTime;
+            Timer.text = Mathf.RoundToInt(gameTimer).ToString();
+        }
         if (Pizza == null) 
         {
             Pizza = GameObject.Find("Pizza1Prefab(Clone)");
@@ -53,24 +58,20 @@ public class RootingUI : MonoBehaviour
             TutorialContainer.SetActive(false);
             curState = gameState.Playing;
         }
-        
-        else if (gameTimer > 0 && curState == gameState.Playing)
-        {
-            gameTimer -= Time.deltaTime;
-            Timer.text = Mathf.RoundToInt(gameTimer).ToString();
-        }
-        else if (curState == gameState.Playing && gameTimer <= 0)
-        {
-            Stamina.gameObject.SetActive(false);
-            curState = gameState.Lost;
-            UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
-        }
         else if (Pizza.GetComponent<RootinPizzaScript>().AmountOnPizza() <= .2f && curState == gameState.Playing)
         {
             Stamina.gameObject.SetActive(false);
             curState = gameState.Won;
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
+        
+        else if (curState == gameState.Playing && gameTimer <= 0)
+        {
+            Stamina.gameObject.SetActive(false);
+            curState = gameState.Lost;
+            UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
+        }
+        
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
         {
             endTimer -= Time.deltaTime;
