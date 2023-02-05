@@ -48,15 +48,14 @@ public class RootinRacoonScript : MonoBehaviour
 
         rb.transform.Rotate(0, 0, rotateSpeed);
 
-        transform.Rotate(0, 0, moveDirection.x * 90 * Time.deltaTime, Space.World);
+        transform.Rotate(0, 0, moveDirection.x * 200 * Time.deltaTime, Space.World);
 
-
+        transform.Translate(new Vector3(0, 0, moveDirection.y * 90 * Time.deltaTime));
 
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = Vector2.up * 90 * moveDirection.y;
 
     }
 }
