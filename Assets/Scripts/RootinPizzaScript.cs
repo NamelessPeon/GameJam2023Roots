@@ -24,11 +24,14 @@ public class RootinPizzaScript : MonoBehaviour
 
     private void Update()
     {
-        amountRemoved = (float)tilesOnPizza / (float)maxTiles;
+        /*
+        
         if (amountRemoved <= .2f)
         {
             Debug.Log("WIN");
         }
+        */
+        amountRemoved = (float)tilesOnPizza / (float)maxTiles;
 
         foreach (var tile in tilesList)
         {
@@ -39,5 +42,9 @@ public class RootinPizzaScript : MonoBehaviour
                 break;
             }
         }
+    }
+    public float AmountOnPizza()
+    {
+        return amountRemoved;
     }
 }
