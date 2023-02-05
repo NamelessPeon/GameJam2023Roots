@@ -12,6 +12,7 @@ public class SpudacusGameController : MonoBehaviour
     public TextMeshProUGUI Timer;
     public GameObject TutorialContainer;
     public GameObject SpawnController;
+    public GameObject Playa;
     public enum gameDifficulty {Easy, Medium, Hard}
     public enum gameState {Tutorial, Playing, Lost, Won}
     public gameState curState = gameState.Tutorial;
@@ -69,7 +70,10 @@ public class SpudacusGameController : MonoBehaviour
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
+        {
             endTimer -= Time.deltaTime;
+            Playa.SetActive(false);
+        }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
             SceneManager.LoadScene("MainMenu");
     }
