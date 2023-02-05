@@ -4,10 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum gameDifficulty { Easy, Medium, Hard }
+
 public class MasterGameController : MonoBehaviour
 {
-    private List<string> gamesPlayed = new List<string>();
+    public List<string> gamesPlayed = new List<string>();
+    public List<gameDifficulty> difficultiesPlayed = new List<gameDifficulty>();
     private List<string> gameTypes = new List<string>() {"RootingAround", "Spudacus", "SwingingVine"};
+    public gameDifficulty nextDifficulty;
 
     private void Awake()
     {
@@ -50,6 +54,25 @@ public class MasterGameController : MonoBehaviour
         }
         else
             nextGame = gameTypes[Random.Range(0, gameTypes.Count - 1)];
+        if (gamesPlayed.Contains(nextGame))
+        {
+            for (int i = gamesPlayed.Count; i >= 0; i--)
+            {
+                if (gamesPlayed[i] == nextGame)
+                {
+                    switch (difficultiesPlayed[i])
+                    {
+                        case gameDifficulty.Easy: nextDifficulty = gameDifficulty.Medium; break;
+                        case gameDifficulty.Medium: nextDifficulty = gameDifficulty.Hard; break;
+                        default: break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            nextDifficulty = gameDifficulty.Easy;
+        }
         SceneManager.LoadScene(nextGame);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,19 +14,27 @@ public class SpudacusGameController : MonoBehaviour
     public GameObject TutorialContainer;
     public GameObject SpawnController;
     public GameObject Playa;
-    public enum gameDifficulty {Easy, Medium, Hard}
     public enum gameState {Tutorial, Playing, Lost, Won}
     public gameState curState = gameState.Tutorial;
     public float gameTimer;
     public float tutorialTimer = 5;
-    public gameDifficulty curDifficulty = gameDifficulty.Easy;
+    public gameDifficulty curDifficulty;
     private float endTimer = 5;
 
     private AudioSource[] music;
+    private MasterGameController MasterController;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject MCObj = GameObject.FindGameObjectWithTag("MC");
+        if (MCObj)
+        {
+            MasterController = MCObj.GetComponent<MasterGameController>();
+            curDifficulty = MasterController.nextDifficulty;
+        }
+        else
+            curDifficulty = gameDifficulty.Medium;
         if (curDifficulty == gameDifficulty.Easy)
         {
             gameTimer = 20;
@@ -75,7 +84,16 @@ public class SpudacusGameController : MonoBehaviour
             Playa.SetActive(false);
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
-            SceneManager.LoadScene("MainMenu");
+        { 
+            if (MasterController && curState == gameState.Won)
+            {
+                MasterController.gamesPlayed.Add("Spudacus");
+                MasterController.difficultiesPlayed.Add(curDifficulty);
+                SceneManager.LoadScene("TreeScene");
+            }
+            else
+                SceneManager.LoadScene("MainMenu"); 
+        }
     }
 
     public void GameOver()
@@ -83,6 +101,8 @@ public class SpudacusGameController : MonoBehaviour
         curState = gameState.Lost;
         Timer.gameObject.SetActive(false);
         SpawnController.GetComponent<Spawn_Controller>().Can_Spawn = false;
+        if (MasterController)
+            Destroy(MasterController.gameObject);
         UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
     }
 }
