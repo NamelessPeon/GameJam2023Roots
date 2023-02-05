@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class RootinRacoonScript : MonoBehaviour
 {
-    public Rigidbody rb;
+    Rigidbody rb;
     public float moveSpeed = 5f;
     public float rotateSpeed = 1.0f;
     public float stamina = 100.0f;
@@ -14,6 +14,8 @@ public class RootinRacoonScript : MonoBehaviour
     public InputAction movement;
     public InputAction boost;
     public InputAction ping;
+
+    private float CurrentRot = 0;
 
     Vector2 moveDirection= Vector2.zero;
 
@@ -36,19 +38,25 @@ public class RootinRacoonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         moveDirection = movement.ReadValue<Vector2>();
-        rb.transform.Rotate(moveDirection);
-        //rb.transform.Rotate(0, 0, rotateSpeed);
+
+        rb.transform.Rotate(0, 0, rotateSpeed);
+
+        transform.Rotate(0, 0, moveDirection.x * 90 * Time.deltaTime, Space.World);
+
+
+
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.velocity = Vector2.up * 90 * moveDirection.y;
+
     }
 }

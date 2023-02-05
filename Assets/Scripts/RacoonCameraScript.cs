@@ -12,6 +12,6 @@ public class RacoonCameraScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = target.position + offset;
+        transform.position = new Vector3(target.position.x, target.position.y + offset.y, transform.position.z);
     }
 }
