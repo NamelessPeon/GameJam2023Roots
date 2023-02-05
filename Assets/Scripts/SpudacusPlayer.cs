@@ -20,12 +20,15 @@ public class SpudacusPlayer : MonoBehaviour
     public GameObject GameController;
 
     bool ShieldChange = false;
+
+    private AudioSource[] sound;
     // Start is called before the first frame update
     void Start()
     {
         Shield = transform.GetChild(0).gameObject;
         PotatoShield = Shield.transform.GetChild(0).gameObject;
         CarrotShield = Shield.transform.GetChild(1).gameObject;
+        sound = GetComponents<AudioSource>();
     }
 
     private void OnEnable()

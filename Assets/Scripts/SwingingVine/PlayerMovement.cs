@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private bool canDuck = true;
     public GameObject GameController;
 
+    private AudioSource[] sound;
+
     Rigidbody rb;
 
     private void OnEnable()
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        sound = GetComponents<AudioSource>();
     }
 
     void FixedUpdate()
@@ -56,8 +59,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
                 cam.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+<<<<<<< Updated upstream
                 moveVector.y -= 7.0f * Time.deltaTime;
                 moveVector.x *= 0.90f;
+                sound[0].Play();
+=======
+                moveVector.y -= 10.0f * Time.deltaTime;
+                //moveVector.x *= 0.90f;
+>>>>>>> Stashed changes
             }
             else
             {
@@ -90,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Vine_Trigger")
         {
             canJump = true;
+            sound[1].Play();
         }
 
         /*/ Hitbox Collision
