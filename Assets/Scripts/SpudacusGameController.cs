@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static SpudacusGameController;
 
 public class SpudacusGameController : MonoBehaviour
@@ -17,6 +18,7 @@ public class SpudacusGameController : MonoBehaviour
     public float gameTimer;
     public float tutorialTimer = 5;
     public gameDifficulty curDifficulty = gameDifficulty.Easy;
+    private float endTimer = 5;
 
     private AudioSource[] music;
 
@@ -36,6 +38,7 @@ public class SpudacusGameController : MonoBehaviour
             gameTimer = 45;
         }
         music = GetComponents<AudioSource>();
+        music[1].PlayDelayed(music[0].clip.length);
     }
 
     // Update is called once per frame
@@ -65,10 +68,10 @@ public class SpudacusGameController : MonoBehaviour
             SpawnController.GetComponent<Spawn_Controller>().Can_Spawn = false;
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
-
-        //Debug.Log(music[0].time);
-        if (music[0].time > 4.5)
-            music[1].Play();
+        else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
+            endTimer -= Time.deltaTime;
+        else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
+            SceneManager.LoadScene("MainMenu");
     }
 
     public void GameOver()
