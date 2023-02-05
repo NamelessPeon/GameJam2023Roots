@@ -3,7 +3,27 @@ guid: 5edf5f84744ad9b4fa732fafb468cf1a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Jason-Witherell(2)
+    second: {fileID: 2800000, guid: 8749055d28ca83447aac8c6cf787737f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Untitled_Artwork
+    second: {fileID: 2800000, guid: b77a44d96b6f5d546b4b6ae23ffecb87, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Untitled_Artwork 2
+    second: {fileID: 2800000, guid: d4f6e0bffc2fd254abe23addc84f7b07, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Untitled_Artwork 3
+    second: {fileID: 2800000, guid: 874067932469cd441b6aa3706f961ad5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
