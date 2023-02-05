@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 7.0f;
     private bool canJump = true;
     private bool canDuck = true;
+    public GameObject GameController;
+
     Rigidbody rb;
 
     private void OnEnable()
@@ -30,9 +32,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        //Vector3 moveVector = new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
-        //rb.velocity = moveVector;
     }
 
     void FixedUpdate()
@@ -50,8 +49,6 @@ public class PlayerMovement : MonoBehaviour
             // Player Input
             if (jumpInput.ReadValue<float>() != 0 && canJump)
             {
-                //Debug.Log("Jump.");
-                //Debug.Log(canJump);
                 canJump = false;
                 moveVector.y = jumpSpeed * Time.deltaTime;
             }
@@ -70,16 +67,16 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply Movement
             rb.velocity = moveVector;
-            //rb.AddRelativeForce(moveVector);
         }
-        else if (duckInput.ReadValue<float>() != 0)
-        {
-            Debug.Log("Start");
-            startMoving = true;
-        }
-
     }
-
+    private void OnTriggerStay(Collider other)
+    {
+        // Hitbox Collision
+        if (other.tag == "Hitbox")
+        {
+            canJump = true;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         // Kill Box Collision
@@ -87,23 +84,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("You Died, LOL.");
             transform.position = Vector3.up;
+            GameController.GetComponent<GameController>().GameOver();
         }
 
         // Vine Collision
         if (other.tag == "Vine_Trigger")
         {
-            // Set collision w/ vine variable to true?
-            //Debug.Log("Vine_Trigger Enter");
-            //Vector3 tmpMoveVector = rb.velocity;
-            //tmpMoveVector.y = 0.0f;
-            //rb.velocity = tmpMoveVector;
-
-            //
-            //rb.useGravity = false;
             canJump = true;
         }
 
-        // Hitbox Collision
+        /*/ Hitbox Collision
         if (other.tag == "Hitbox")
         {
             //Debug.Log("Side Hitbox Enter");
@@ -111,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
             //newPos.x -= 0.2f;
             //rb.MovePosition(newPos);
             canJump = true;
-        }
+        }*/
     }
 
     private void OnTriggerExit(Collider other)

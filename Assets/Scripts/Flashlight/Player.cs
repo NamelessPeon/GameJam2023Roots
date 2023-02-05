@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     public InputAction lookAround;
     public Camera cam;
     public GameObject enemy;
+    public GameObject target;
     public int numLanes = 3;
     float angle;
     private List<GameObject> enemiesList = new List<GameObject>();
+    private List<GameObject> targetList = new List<GameObject>();
 
     private float lookDirection;
     private bool pressedOnce = false;
@@ -40,12 +42,18 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < numLanes; i++)
         {
+            // Spawn Enemy
             Vector3 pos = new Vector3(Mathf.Sin(Mathf.Deg2Rad * (angle - (angle * i))), 0.0f, Mathf.Cos(Mathf.Deg2Rad * (angle - (angle * i))));
-            pos *= 10;
+            Vector3 targetPos = pos;
+            pos *= 25.0f;
             Debug.Log(pos);
             GameObject newEnemy = Instantiate(enemy, pos, Quaternion.Euler(0, 0, 0));
             newEnemy.GetComponent<EnemyMovement>().lane = i;
             enemiesList.Add(newEnemy);
+
+            // Spawn Target
+            targetPos *= Random.Range(5, 20);
+            targetList.Add(Instantiate(target, targetPos, Quaternion.Euler(0, 0, 0)));
         }
         
     }
