@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924335160117742864}
   m_LocalRotation: {x: 0.9990483, y: -0, z: -0, w: -0.043619405}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2000, y: 2000, z: 60}
+  m_LocalPosition: {x: -0.041853, y: 0.052438, z: -0.19183}
+  m_LocalScale: {x: 1098.4401, y: 1098.4401, z: 32.9532}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61b14ed10b599140998e65f2d12a8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilesOnPizza: 0
+  player: {fileID: 0}
 --- !u!54 &1757956930088745778
 Rigidbody:
   m_ObjectHideFlags: 0
