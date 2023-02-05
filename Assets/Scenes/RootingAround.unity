@@ -3238,6 +3238,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3400261277046133889, guid: b3b190d9589fd194a8b137dc3db7ede1, type: 3}
     - target: {fileID: 713018635724356845, guid: 3ed9874620a2a1042810c58b3e1a1a14, type: 3}
+      propertyPath: pizza
+      value: 
+      objectReference: {fileID: 1924335160117742864, guid: 68e5f0e86c2f8ad44bbcdfcc4675702f, type: 3}
+    - target: {fileID: 713018635724356845, guid: 3ed9874620a2a1042810c58b3e1a1a14, type: 3}
       propertyPath: NumCol
       value: 60
       objectReference: {fileID: 0}
@@ -3247,7 +3251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 713018635724356845, guid: 3ed9874620a2a1042810c58b3e1a1a14, type: 3}
       propertyPath: tileDepth
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 713018635724356845, guid: 3ed9874620a2a1042810c58b3e1a1a14, type: 3}
       propertyPath: tileWidth
@@ -3632,6 +3636,14 @@ PrefabInstance:
     - target: {fileID: 4306554028796240401, guid: dbf7edb8d71122b40a071013edbea04f, type: 3}
       propertyPath: moveSpeed
       value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306554028796240401, guid: dbf7edb8d71122b40a071013edbea04f, type: 3}
+      propertyPath: staminaRegen
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306554028796240401, guid: dbf7edb8d71122b40a071013edbea04f, type: 3}
+      propertyPath: rateOfStaminaLoss
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8674126375116749184, guid: dbf7edb8d71122b40a071013edbea04f, type: 3}
       propertyPath: m_Name
