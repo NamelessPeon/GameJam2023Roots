@@ -85,11 +85,11 @@ public class SpudacusPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Potato_Projectile(Clone)" && curShield == shieldType.Potato)
+        if ((other.gameObject.name == "Potato_Projectile(Clone)" && curShield == shieldType.Potato) || other.gameObject.name == "Carrot_Projectile(Clone)" && curShield == shieldType.Carrot)
+        {
             Destroy(other.gameObject);
-            sound[0].Play();
-        if (other.gameObject.name == "Carrot_Projectile(Clone)" && curShield == shieldType.Carrot)
-            Destroy(other.gameObject);
-            sound[0].Play();
+            AudioSource[] sounds = GameController.GetComponents<AudioSource>();
+            sounds[2].Play();
+        }
     }
 }

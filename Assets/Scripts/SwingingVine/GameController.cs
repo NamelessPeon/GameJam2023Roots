@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
         {
             endTimer -= Time.deltaTime;
-            Player.SetActive(false);
+            //Player.SetActive(false);
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
             SceneManager.LoadScene("MainMenu");
