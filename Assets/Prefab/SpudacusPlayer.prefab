@@ -299,8 +299,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3504082, z: 1}
-  m_Center: {x: 0, y: 0.17520423, z: 0}
+  m_Size: {x: 1, y: 1.1434335, z: 1}
+  m_Center: {x: 0, y: 0.2786916, z: 0}
 --- !u!114 &6635098761556464276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +397,7 @@ MonoBehaviour:
       m_Action: Sheild Swap
       m_Flags: 0
     m_Flags: 0
+  GameController: {fileID: 0}
 --- !u!54 &6635098761556464278
 Rigidbody:
   m_ObjectHideFlags: 0

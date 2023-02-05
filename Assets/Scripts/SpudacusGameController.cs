@@ -67,7 +67,7 @@ public class SpudacusGameController : MonoBehaviour
         }
 
         //Debug.Log(music[0].time);
-        if (music[0].time > 6.55)
+        if (music[0].time > 5)
             music[1].Play();
     }
 
