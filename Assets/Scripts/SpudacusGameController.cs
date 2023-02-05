@@ -25,15 +25,15 @@ public class SpudacusGameController : MonoBehaviour
     {
         if (curDifficulty == gameDifficulty.Easy)
         {
-            gameTimer = 15;
+            gameTimer = 20;
         }
         else if (curDifficulty == gameDifficulty.Medium)
         {
-            gameTimer = 20;
+            gameTimer = 30;
         }
         else
         {
-            gameTimer = 30;
+            gameTimer = 45;
         }
         music = GetComponents<AudioSource>();
     }
