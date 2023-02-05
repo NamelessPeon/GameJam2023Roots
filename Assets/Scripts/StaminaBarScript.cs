@@ -10,18 +10,19 @@ public class StaminaBarScript : MonoBehaviour
     private Image staminaBar;
     public float maxStamina = 100f;
     public float curStamina;
+    RootinRacoonScript player;
     //Need reference to Raccon Player Script
     //EX: PlayerController_Script player;
 
     private void Start()
     {
         staminaBar = GetComponent<Image>();
-        // player = FindObjectOfType<PlayerController_Script>();
+        player = FindObjectOfType<RootinRacoonScript>();
     }
 
     private void Update()
     {
-        // curStamina = player.stamina
+        curStamina = player.stamina;
         staminaBar.fillAmount = curStamina / maxStamina;
     }
 }
