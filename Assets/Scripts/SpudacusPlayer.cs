@@ -20,12 +20,15 @@ public class SpudacusPlayer : MonoBehaviour
     public GameObject GameController;
 
     bool ShieldChange = false;
+
+    private AudioSource[] sound;
     // Start is called before the first frame update
     void Start()
     {
         Shield = transform.GetChild(0).gameObject;
         PotatoShield = Shield.transform.GetChild(0).gameObject;
         CarrotShield = Shield.transform.GetChild(1).gameObject;
+        sound = GetComponents<AudioSource>();
     }
 
     private void OnEnable()
@@ -84,7 +87,9 @@ public class SpudacusPlayer : MonoBehaviour
     {
         if (other.gameObject.name == "Potato_Projectile(Clone)" && curShield == shieldType.Potato)
             Destroy(other.gameObject);
+            sound[0].Play();
         if (other.gameObject.name == "Carrot_Projectile(Clone)" && curShield == shieldType.Carrot)
             Destroy(other.gameObject);
+            sound[0].Play();
     }
 }
