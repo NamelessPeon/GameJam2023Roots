@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool startMoving = false;
+    public bool startMoving = false;
     public InputAction jumpInput;
     public InputAction duckInput;
     public Camera cam;
@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
                 cam.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                moveVector.y -= 7.0f * Time.deltaTime;
+                moveVector.x *= 0.90f;
             }
             else
             {
