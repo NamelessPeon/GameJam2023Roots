@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TreeScene.unity
     guid: d596b2982e9d75449807bfc67928313f
+  - enabled: 1
+    path: Assets/Scenes/Angry Potato.unity
+    guid: 42845c75568e139469a55ac462f31168
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 7cea9406980739e45971bed453fd0801, type: 2}

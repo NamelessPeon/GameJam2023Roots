@@ -43,4 +43,11 @@ public class MainMenuScript : MonoBehaviour
         Debug.Log("Player has pressed Spudacus");
         SceneManager.LoadScene("Spudacus");
     }
+
+    public void Spudapult()
+    {
+        // Loads Spudacus
+        Debug.Log("Player has pressed Spudapult");
+        SceneManager.LoadScene("Angry Potato");
+    }
 }

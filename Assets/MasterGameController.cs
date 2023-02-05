@@ -12,7 +12,7 @@ public class MasterGameController : MonoBehaviour
 {
     public List<string> gamesPlayed = new List<string>();
     public List<gameDifficulty> difficultiesPlayed = new List<gameDifficulty>();
-    private List<string> gameTypes = new List<string>() {"RootingAround", "Spudacus", "SwingingVine"};
+    private List<string> gameTypes = new List<string>() {"RootingAround", "Spudacus", "SwingingVine", "Angry Potato"};
     public gameDifficulty nextDifficulty;
 
     private void Awake()
