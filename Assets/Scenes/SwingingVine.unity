@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.27
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23567477, g: 0.26455447, b: 0.3099915, a: 0.27}
+  m_IndirectSpecularColor: {r: 0.23567495, g: 0.26455483, b: 0.30999187, a: 0.27}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -921,8 +921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -288, y: -184}
-  m_SizeDelta: {x: 366.9998, y: 99.432}
+  m_AnchoredPosition: {x: -288, y: -164.27623}
+  m_SizeDelta: {x: 366.9998, y: 138.8795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636517925
 MonoBehaviour:
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SPACE or A Button to Jump.
+  m_text: Press SPACE or A Button to Jump from Platfors or Vines.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1595,7 +1595,7 @@ RectTransform:
   m_GameObject: {fileID: 1048479707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.793096, y: 5.1277, z: 5.1277}
+  m_LocalScale: {x: 9.981704, y: 4.9190173, z: 4.9190173}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1667125613}
@@ -1926,10 +1926,10 @@ RectTransform:
   m_Father: {fileID: 1120142455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1172634243
 PrefabInstance:
@@ -2375,7 +2375,7 @@ RectTransform:
   m_GameObject: {fileID: 1667125612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8981267, y: 0.8981267, z: 0.8981267}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1048479708}
@@ -2725,7 +2725,7 @@ RectTransform:
   m_GameObject: {fileID: 1816134289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.10713193, y: 0.20131148, z: 0.2064733}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 642390493}
@@ -2733,10 +2733,10 @@ RectTransform:
   m_Father: {fileID: 1120142455}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0.000030517578}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1914094365
 GameObject:
@@ -2890,7 +2890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SHIFT or B Button to Slide/Climb.
+  m_text: Press or hold SHIFT or B Button to Slide/Climb.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -145.62396, y: 61.455933, z: -24.047974, w: -110.88791}
+  m_margin: {x: -189.48297, y: 10.492386, z: 17.439453, w: -110.88791}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
