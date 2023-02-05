@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class SpudacusPlayer : MonoBehaviour
 {
-    public float shieldRotSpeed = 100f;
+    public float shieldRotSpeed = 120f;
     private GameObject Shield;
     private float RotateDirection = 0;
     public enum shieldType {Potato, Carrot};

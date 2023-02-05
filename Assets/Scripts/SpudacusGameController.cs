@@ -35,17 +35,21 @@ public class SpudacusGameController : MonoBehaviour
         }
         else
             curDifficulty = gameDifficulty.Medium;
+        Spawn_Controller spawnScript = SpawnController.GetComponent<Spawn_Controller>();
         if (curDifficulty == gameDifficulty.Easy)
         {
             gameTimer = 20;
+            spawnScript.Spawn_Delay = 2.5f;
         }
         else if (curDifficulty == gameDifficulty.Medium)
         {
             gameTimer = 30;
+            spawnScript.Spawn_Delay = 2.0f;
         }
         else
         {
             gameTimer = 45;
+            spawnScript.Spawn_Delay = 1.0f;
         }
         music = GetComponents<AudioSource>();
         music[1].PlayDelayed(music[0].clip.length);
