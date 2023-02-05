@@ -12,6 +12,7 @@ public class RootinRacoonScript : MonoBehaviour
     public float stamina = 100.0f;
     public float boostAmount = 5f; 
     public float rateOfStaminaLoss = 1.0f;
+    public float staminaRegen = 0.01f; 
 
     public InputAction movement;
     public InputAction boost;
@@ -65,8 +66,12 @@ public class RootinRacoonScript : MonoBehaviour
             {
                 stamina -= rateOfStaminaLoss;
                 transform.Rotate(0, 0, 6 * rotateSpeed);
-                rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * boostAmount * moveSpeed * Time.deltaTime));
+                rb.AddRelativeForce(new Vector3(0, 0,  boostAmount * moveSpeed * Time.deltaTime));
             }
+        }
+        if (stamina < 100)
+        {
+            stamina += staminaRegen;
         }
     }
 

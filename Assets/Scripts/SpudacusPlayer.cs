@@ -26,7 +26,6 @@ public class SpudacusPlayer : MonoBehaviour
         Shield = transform.GetChild(0).gameObject;
         PotatoShield = Shield.transform.GetChild(0).gameObject;
         CarrotShield = Shield.transform.GetChild(1).gameObject;
-        
     }
 
     private void OnEnable()

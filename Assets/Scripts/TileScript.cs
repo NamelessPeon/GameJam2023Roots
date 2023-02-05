@@ -6,6 +6,7 @@ public class TileScript : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if (other.gameObject.name == "RootinRacoon")
+            Destroy(this.gameObject);
     }
 }

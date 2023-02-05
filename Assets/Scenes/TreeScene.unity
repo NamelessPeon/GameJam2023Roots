@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 824305596}
   m_Layer: 0
   m_Name: MasterController
-  m_TagString: Untagged
+  m_TagString: MC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
