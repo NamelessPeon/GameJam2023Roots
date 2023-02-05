@@ -43,6 +43,7 @@ public class Slingshot : MonoBehaviour
         potatoCollider = potato.GetComponent<Collider>();
         potatoCollider.enabled = false;
         potato.isKinematic = true;
+        potato.transform.position = center.position;
 
     }
 
@@ -78,16 +79,18 @@ public class Slingshot : MonoBehaviour
 
         potato = null;
         potatoCollider = null;
-        Invoke("CreatePotato", 2);
+        Invoke("CreatePotato", 1);
     }
     private void OnMouseDown()
     {
         isMouseDown = true;
+        isMouseUp = false;
     }
 
     private void OnMouseUp()
     {
         isMouseUp = true;
+        isMouseDown = false;
         Shoot();
     }
 
@@ -102,8 +105,14 @@ public class Slingshot : MonoBehaviour
         lineRenderers[0].SetPosition(1, postion);
         lineRenderers[1].SetPosition(1, postion);
 
-        Vector3 dir = postion - center.position;
-        potato.transform.position = postion + dir.normalized * potatoOffset;
-        potato.transform.right = -dir.normalized;
+        if (isMouseDown)
+        {
+            Vector3 dir = postion - center.position;
+            if (potato)
+            {
+                potato.transform.position = postion + dir.normalized * potatoOffset;
+                potato.transform.right = -dir.normalized;
+            }
+        }
     }
 }
