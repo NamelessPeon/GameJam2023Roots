@@ -9,6 +9,7 @@ TagManager:
   - Hitbox
   - GameButton
   - Potato
+  - MC
   layers:
   - Default
   - TransparentFX

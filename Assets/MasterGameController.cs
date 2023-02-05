@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
+
+public enum gameDifficulty { Easy, Medium, Hard }
 
 public class MasterGameController : MonoBehaviour
 {
-    private List<string> gamesPlayed = new List<string>();
+    public List<string> gamesPlayed = new List<string>();
+    public List<gameDifficulty> difficultiesPlayed = new List<gameDifficulty>();
     private List<string> gameTypes = new List<string>() {"RootingAround", "Spudacus", "SwingingVine"};
+    public gameDifficulty nextDifficulty;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
-        Random.seed = Mathf.RoundToInt(Time.time);
+        Random.InitState((int)DateTime.Now.Ticks);
     }
 
     // Start is called before the first frame update
@@ -49,7 +55,26 @@ public class MasterGameController : MonoBehaviour
             }
         }
         else
-            nextGame = gameTypes[Random.Range(0, gameTypes.Count - 1)];
+            nextGame = gameTypes[Random.Range(0, gameTypes.Count)];
+        if (gamesPlayed.Contains(nextGame))
+        {
+            for (int i = gamesPlayed.Count; i >= 0; i--)
+            {
+                if (gamesPlayed[i] == nextGame)
+                {
+                    switch (difficultiesPlayed[i])
+                    {
+                        case gameDifficulty.Easy: nextDifficulty = gameDifficulty.Medium; break;
+                        case gameDifficulty.Medium: nextDifficulty = gameDifficulty.Hard; break;
+                        default: break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            nextDifficulty = gameDifficulty.Easy;
+        }
         SceneManager.LoadScene(nextGame);
     }
 }
