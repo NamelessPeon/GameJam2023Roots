@@ -17,4 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SwingingVine.unity
     guid: c7da2038d4dfc844281f59f66b0f603b
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/TreeScene.unity
+    guid: d596b2982e9d75449807bfc67928313f
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 7cea9406980739e45971bed453fd0801, type: 2}

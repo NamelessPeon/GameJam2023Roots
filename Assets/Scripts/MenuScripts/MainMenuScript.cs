@@ -12,7 +12,7 @@ public class MainMenuScript : MonoBehaviour
     {
         // This section would lot a scene that would present the player with two options for what game to play. 
         Debug.Log("Player has pressed Play");
-        //SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("TreeScene");
     }
 
     public void Quit()

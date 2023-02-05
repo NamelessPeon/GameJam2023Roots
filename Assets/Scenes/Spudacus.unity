@@ -5042,6 +5042,7 @@ MonoBehaviour:
   Timer: {fileID: 849654374}
   TutorialContainer: {fileID: 66153378}
   SpawnController: {fileID: 925764134}
+  Playa: {fileID: 1913992467}
   curState: 0
   gameTimer: 0
   tutorialTimer: 5
