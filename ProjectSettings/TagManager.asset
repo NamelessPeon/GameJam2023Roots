@@ -8,6 +8,7 @@ TagManager:
   - Vine_Trigger
   - Hitbox
   - GameButton
+  - Potato
   - MC
   layers:
   - Default

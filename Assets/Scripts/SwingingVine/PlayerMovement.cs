@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Kill_Box")
         {
             Debug.Log("You Died, LOL.");
-            transform.position = Vector3.up;
             GameController.GetComponent<GameController>().GameOver();
         }
 
