@@ -57,8 +57,15 @@ public class Tile_Generation : MonoBehaviour
         {
             if (lastTileWasGround)
             {
-                tileList[tileList.Count].transform.localScale = tileList[tileList.Count].transform.localScale * 2;
-            
+                GameObject oldTile = tileList[tileList.Count-1];
+                Vector3 newSize = oldTile.transform.localScale;
+                newSize.x *= 2;
+                tileList.RemoveAt(0);
+                Destroy(oldTile);
+                GameObject newTile = Instantiate(groundTile, pos, Quaternion.Euler(0, 0, 0));
+                newTile.transform.localScale = newSize;
+                tileList.Add(newTile);
+
             }
             else
             {
