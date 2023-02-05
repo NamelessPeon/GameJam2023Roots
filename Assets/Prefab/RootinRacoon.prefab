@@ -48,8 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 30
-  rotateSpeed: 2
+  rotateSpeed: 5
   stamina: 100
+  boostAmount: 3
+  rateOfStaminaLoss: 0.5
   movement:
     m_Name: Movement
     m_Type: 0
@@ -98,6 +100,46 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Movement
       m_Flags: 8
+    - m_Name: 2D Vector
+      m_Id: 3e05a46a-eb8c-432c-b172-dba8bf394be3
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 6279c34c-f0bd-40b1-946b-d4030fb77fc6
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: a407cbc0-7128-47fd-b1c1-08f6fe898cc6
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 548945de-944f-4df2-abcf-ce9256b815d1
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 047c239c-9226-4fcd-a7a0-4f937f298897
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
     m_Flags: 0
   boost:
     m_Name: Boost
@@ -110,6 +152,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 22e4cb68-e291-42cd-bf89-29db6de36887
       m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Boost
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c068b457-b559-4eb0-bdbd-90e03647fc88
+      m_Path: <Gamepad>/buttonSouth
       m_Interactions: 
       m_Processors: 
       m_Groups: 

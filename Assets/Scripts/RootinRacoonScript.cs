@@ -10,12 +10,14 @@ public class RootinRacoonScript : MonoBehaviour
     public float moveSpeed = 5f;
     public float rotateSpeed = 1.0f;
     public float stamina = 100.0f;
+    public float boostAmount = 5f; 
+    public float rateOfStaminaLoss = 1.0f;
 
     public InputAction movement;
     public InputAction boost;
     public InputAction ping;
 
-    private float CurrentRot = 0;
+    private float boostButton;
 
     Vector2 moveDirection= Vector2.zero;
 
@@ -44,16 +46,28 @@ public class RootinRacoonScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Movement
         moveDirection = movement.ReadValue<Vector2>();
 
         transform.Rotate(0, 0, rotateSpeed);
 
         transform.Rotate(0, 0, moveDirection.x * 200 * Time.deltaTime, Space.World);
 
-        //transform.Translate(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
-        //rb.MovePosition(transform.position + new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
-        rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));//new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
-        //rb.velocity = new Vector2(moveDirection.y * moveSpeed, 0);
+        rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
+
+
+        // Boost
+        boostButton = boost.ReadValue<float>();
+        //Debug.Log(boostButton);
+        if (boostButton == 1) 
+        {
+            if (stamina > 0)
+            {
+                stamina -= rateOfStaminaLoss;
+                transform.Rotate(0, 0, 6 * rotateSpeed);
+                rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * boostAmount * moveSpeed * Time.deltaTime));
+            }
+        }
     }
 
     
