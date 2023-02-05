@@ -11,6 +11,11 @@ public class TargetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i=0; i<5; i++)
+        {
+            target = Instantiate(targetPrefab).GetComponent<Rigidbody>();
+            targetCollider = target.GetComponent<Collider>();
+            target.position = new Vector3(Random.Range(10, 20), Random.Range(1, 6), 0);
+        }
     }
 }
