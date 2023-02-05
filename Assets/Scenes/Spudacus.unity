@@ -23303,6 +23303,14 @@ PrefabInstance:
       propertyPath: SheildRotate.m_Name
       value: Sheild Rotate
       objectReference: {fileID: 0}
+    - target: {fileID: 6635098761556464276, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
+      propertyPath: SheildRotate.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/#(D)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635098761556464276, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
+      propertyPath: SheildRotate.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/#(A)
+      objectReference: {fileID: 0}
     - target: {fileID: 7700558002891450095, guid: 78253bb00806c7348ae7b0fe3fa47c32, type: 3}
       propertyPath: m_Convex
       value: 1
