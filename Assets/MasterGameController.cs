@@ -77,4 +77,9 @@ public class MasterGameController : MonoBehaviour
         }
         SceneManager.LoadScene(nextGame);
     }
+    public void Quit()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Destroy(this.gameObject);
+    }
 }
