@@ -85,12 +85,14 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
         }
 
+        // Hitbox Collision
         if (other.tag == "Hitbox")
         {
             //Debug.Log("Side Hitbox Enter");
-            Vector3 newPos = rb.transform.position;
-            newPos.x -= 0.2f;
-            rb.MovePosition(newPos);
+            //Vector3 newPos = rb.transform.position;
+            //newPos.x -= 0.2f;
+            //rb.MovePosition(newPos);
+            canJump = true;
         }
     }
 
@@ -102,7 +104,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Vine_Trigger")
         {
             //Debug.Log("Vine_Trigger Exit");
-            rb.useGravity = true;
+            //rb.useGravity = true;
+            canJump = false;
         }
     }
 }
