@@ -117,12 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilesOnPizza: 0
-<<<<<<< Updated upstream
   player: {fileID: 0}
-=======
-  tilesList: []
-  Tile: {fileID: 3400261277046133889, guid: b3b190d9589fd194a8b137dc3db7ede1, type: 3}
->>>>>>> Stashed changes
 --- !u!54 &1757956930088745778
 Rigidbody:
   m_ObjectHideFlags: 0
