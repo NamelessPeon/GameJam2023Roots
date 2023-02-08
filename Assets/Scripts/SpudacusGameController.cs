@@ -91,8 +91,7 @@ public class SpudacusGameController : MonoBehaviour
         { 
             if (MasterController && curState == gameState.Won)
             {
-                MasterController.gamesPlayed.Add("Spudacus");
-                MasterController.difficultiesPlayed.Add(curDifficulty);
+                MasterController.gamesPlayed++;
                 SceneManager.LoadScene("TreeScene");
             }
             else

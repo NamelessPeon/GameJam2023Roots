@@ -80,8 +80,7 @@ public class RootingUI : MonoBehaviour
         {
             if (MasterController && curState == gameState.Won)
             {
-                MasterController.gamesPlayed.Add("RootingAround");
-                MasterController.difficultiesPlayed.Add(curDifficulty);
+                MasterController.gamesPlayed++;
                 SceneManager.LoadScene("TreeScene");
             }
             else
