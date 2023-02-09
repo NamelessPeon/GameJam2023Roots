@@ -13,6 +13,9 @@ TagManager:
   - Tile
   - TargetManager
   - DeadImage
+  - Level
+  - Wall
+  - MenuMusic
   layers:
   - Default
   - TransparentFX

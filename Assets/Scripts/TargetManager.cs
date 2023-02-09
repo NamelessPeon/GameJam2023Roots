@@ -13,6 +13,11 @@ public class TargetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject MCObj = GameObject.FindGameObjectWithTag("MC");
+        if (MCObj)
+        {
+            MasterController = MCObj.GetComponent<MasterGameController>();
+        }
         for (int i=0; i<numberOfTargets; i++)
         {
             target = Instantiate(targetPrefab).GetComponent<Rigidbody>();
@@ -24,6 +29,7 @@ public class TargetManager : MonoBehaviour
     void Update()
     {
         //print(numberOfTargets);
+        //numberOfTargets = 0;    // Debug Win
         if (numberOfTargets == 0)
         {
             if (MasterController)

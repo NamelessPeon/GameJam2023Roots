@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum gameDifficulty { Easy, Medium, Hard }
@@ -15,28 +18,23 @@ public class MasterGameController : MonoBehaviour
     public List<string> setList = new List<string>();
     private List<string> gameTypes = new List<string>() {"RootingAround", "Spudacus", "SwingingVine", "Angry Potato"};
     public gameDifficulty nextDifficulty;
+    private GameObject[] levelScreens;
+    private GameObject winScreen;
+    public List<string> levelProg = new List<string>();
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        Random.InitState((int)DateTime.Now.Ticks);
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject[] buttons = GameObject.FindGameObjectsWithTag("GameButton");
-
-        int i = 0;
-        foreach (GameObject button in buttons)
-        {
-            i++;
-            if (i <= gamesPlayed)
-                button.SetActive(true);
-        }
+        DontDestroyOnLoad(this);
+        Random.InitState((int)DateTime.Now.Ticks);
 
         // Populate setList with each game, three times for three difficulties
-        for (i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             foreach (string game in gameTypes)
             {
@@ -47,23 +45,78 @@ public class MasterGameController : MonoBehaviour
         // Shuffle setList
         var temp = new List<string>(setList);
         setList.Clear();
-        for (i = temp.Count(); i > 0; i--)
+        for (int i = temp.Count(); i > 0; i--)
         {
             int k = Random.Range(0, temp.Count() - 1);
             setList.Add(temp[k]);
             temp.RemoveAt(k);
         }
+
+        // Set button text
+        GameObject[] buttons = GameObject.FindGameObjectsWithTag("GameButton");
+        int temp2 = 0;
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponentInChildren<TextMeshProUGUI>().text = setList[temp2];
+            temp2++;
+        }
+
+        UpdateScene();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateScene()
     {
-        
+        levelScreens = GameObject.FindGameObjectsWithTag("Level");
+        GameObject curLevel = null;
+        winScreen = GameObject.Find("Victory");
+        string levelName = null;
+        switch (gamesPlayed)
+        {
+            case 0: levelName = "Level1";  break;
+            case int i when i >= 1 && i < 3: 
+                levelName = "Level2";  break;
+            case int i when i >= 3 && i < 6:
+                levelName = "Level3"; break;
+            case int i when i >= 6 && i < 9: 
+                levelName = "Level4"; break;
+            case int i when i >= 9 && i < 12: 
+                levelName = "Level5"; break;
+            case 12: curLevel = winScreen; break;
+            default: Debug.Log("Level Find Error"); break;
+        }
+
+        for (int i = 0; i < levelScreens.Count(); i++)
+        {
+            if (levelScreens[i].name == levelName)
+                curLevel = levelScreens[i];
+        }
+        foreach (GameObject container in levelScreens)
+        {
+            if (container != curLevel)
+                container.SetActive(false);
+            else
+                container.SetActive(true);
+        }
+        if (curLevel != winScreen)
+            winScreen.SetActive(false);
+
+        // Turn off previously selected buttons
+        foreach (Transform child in curLevel.transform)
+        {
+            if (levelProg.Contains(child.name))
+            {
+               child.gameObject.SetActive(false);
+            }
+        }
     }
 
-    public void LoadNextGame()
+    public void LoadNextGame(GameObject button)
     {
-        string nextGame = setList[gamesPlayed];
+        GameObject.Find("MenuTheme").GetComponent<AudioSource>().Stop();
+        // Gets the text of the button clicked and stores it to deactivate later
+        string nextGame = button.GetComponentInChildren<TextMeshProUGUI>().text;
+        button.SetActive(false);
+        Debug.Log("Loading " + nextGame + "...");
         int timesPlayed = 0;
         if (gamesPlayed > 1)
         {
@@ -80,10 +133,5 @@ public class MasterGameController : MonoBehaviour
             default: nextDifficulty = gameDifficulty.Easy;  break;
         }
         SceneManager.LoadScene(nextGame);
-    }
-    public void Quit()
-    {
-        SceneManager.LoadScene("MainMenu");
-        Destroy(this.gameObject);
     }
 }

@@ -23,14 +23,18 @@ public class Slingshot : MonoBehaviour
     Rigidbody potato;
     Collider potatoCollider;
 
-    public int throwsLeft = 5;
+    public int throwsLeft;
 
     bool isMouseDown;
     private MasterGameController MasterController;
 
     public ThrowScore throwScoreObject;
+    public gameDifficulty curDifficulty;
 
     public PotatoYouDiedLoser gameOverScreen;
+    public GameObject targetManager;
+    private float shotTimer = 2;
+    private bool timeLastShot = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +45,23 @@ public class Slingshot : MonoBehaviour
         lineRenderers[0].SetPosition(0, stripPositions[0].position);
         lineRenderers[1].SetPosition(0, stripPositions[1].position);
         CreatePotato();
+
+        GameObject MCObj = GameObject.FindGameObjectWithTag("MC");
+        if (MCObj)
+        {
+            MasterController = MCObj.GetComponent<MasterGameController>();
+            curDifficulty = MasterController.nextDifficulty;
+        }
+        else
+            curDifficulty = gameDifficulty.Medium;
+
+        if (curDifficulty == gameDifficulty.Easy)
+            throwsLeft = 10;
+        else if (curDifficulty == gameDifficulty.Medium)
+            throwsLeft = 7;
+        else
+            throwsLeft = 5;
+        throwScoreObject.UpdateScore(throwsLeft);
     }
 
     void CreatePotato()
@@ -56,7 +77,9 @@ public class Slingshot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMouseDown)
+        if (timeLastShot)
+            shotTimer -= Time.deltaTime;
+        if (isMouseDown && throwsLeft > 0)
         {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = 10;
@@ -75,6 +98,16 @@ public class Slingshot : MonoBehaviour
         {
             potatoCollider.enabled = true;
         }
+
+        if (shotTimer <= 0 && throwsLeft == 0 && targetManager.GetComponent<TargetManager>().numberOfTargets > 0)
+        {
+            if (MasterController)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("MenuMusic"));
+                Destroy(MasterController.gameObject);
+            }
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     void Shoot()
@@ -82,18 +115,13 @@ public class Slingshot : MonoBehaviour
         potato.isKinematic = false;
         Vector3 potatoForce = (currentPosition - center.position) * force * -1;
         potato.velocity = potatoForce;
-
         potato = null;
         potatoCollider = null;
         throwsLeft -= 1;
         throwScoreObject.UpdateScore(throwsLeft);
-        if (throwsLeft == 0)
-        {
-            if (MasterController)
-                Destroy(MasterController.gameObject);
-            SceneManager.LoadScene("MainMenu");
-        }
         Invoke("CreatePotato", 1);
+        if (throwsLeft == 0)
+            timeLastShot = true;
     }
     private void OnMouseDown()
     {
@@ -103,7 +131,8 @@ public class Slingshot : MonoBehaviour
     private void OnMouseUp()
     {
         isMouseDown = false;
-        Shoot();
+        if (throwsLeft > 0)
+            Shoot();
     }
 
     void ResetStrips()

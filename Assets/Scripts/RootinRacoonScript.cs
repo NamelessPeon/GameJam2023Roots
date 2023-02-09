@@ -19,6 +19,7 @@ public class RootinRacoonScript : MonoBehaviour
     public InputAction ping;
 
     private float boostButton;
+    public bool play = false;
 
     Vector2 moveDirection= Vector2.zero;
 
@@ -47,31 +48,34 @@ public class RootinRacoonScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Movement
-        moveDirection = movement.ReadValue<Vector2>();
-
-        transform.Rotate(0, 0, rotateSpeed);
-
-        transform.Rotate(0, 0, moveDirection.x * 200 * Time.deltaTime, Space.World);
-
-        rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
-
-
-        // Boost
-        boostButton = boost.ReadValue<float>();
-        //Debug.Log(boostButton);
-        if (boostButton == 1) 
+        if (play)
         {
-            if (stamina > 0)
+            // Movement
+            moveDirection = movement.ReadValue<Vector2>();
+
+            transform.Rotate(0, 0, rotateSpeed);
+
+            transform.Rotate(0, 0, moveDirection.x * 200 * Time.deltaTime, Space.World);
+
+            rb.AddRelativeForce(new Vector3(0, 0, moveDirection.y * moveSpeed * Time.deltaTime));
+
+
+            // Boost
+            boostButton = boost.ReadValue<float>();
+            //Debug.Log(boostButton);
+            if (boostButton == 1)
             {
-                stamina -= rateOfStaminaLoss;
-                transform.Rotate(0, 0, 6 * rotateSpeed);
-                rb.AddRelativeForce(new Vector3(0, 0,  boostAmount * moveSpeed * Time.deltaTime));
+                if (stamina > 0)
+                {
+                    stamina -= rateOfStaminaLoss;
+                    transform.Rotate(0, 0, 6 * rotateSpeed);
+                    rb.AddRelativeForce(new Vector3(0, 0, boostAmount * moveSpeed * Time.deltaTime));
+                }
             }
-        }
-        if (stamina < 100)
-        {
-            stamina += staminaRegen;
+            if (stamina < 100)
+            {
+                stamina += staminaRegen;
+            }
         }
     }
 
