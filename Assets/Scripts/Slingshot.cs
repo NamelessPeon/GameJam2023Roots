@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -28,12 +29,12 @@ public class Slingshot : MonoBehaviour
     bool isMouseDown;
     private MasterGameController MasterController;
 
-    public ThrowScore throwScoreObject;
+    public GameObject throwScoreObject;
     public gameDifficulty curDifficulty;
 
     public PotatoYouDiedLoser gameOverScreen;
     public GameObject targetManager;
-    private float shotTimer = 2;
+    private float shotTimer = 5;
     private bool timeLastShot = false;
 
     // Start is called before the first frame update
@@ -61,7 +62,7 @@ public class Slingshot : MonoBehaviour
             throwsLeft = 7;
         else
             throwsLeft = 5;
-        throwScoreObject.UpdateScore(throwsLeft);
+        throwScoreObject.GetComponent<TextMeshProUGUI>().text = "Throws Left: " + throwsLeft;
     }
 
     void CreatePotato()
@@ -71,7 +72,6 @@ public class Slingshot : MonoBehaviour
         potatoCollider.enabled = false;
         potato.isKinematic = true;
         potato.transform.position = center.position;
-
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class Slingshot : MonoBehaviour
 
             currentPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             currentPosition = center.position + Vector3.ClampMagnitude(currentPosition - center.position, maxLength);
-
+            currentPosition.z = 0;
             SetStrips(currentPosition);
         }
         else
@@ -113,12 +113,14 @@ public class Slingshot : MonoBehaviour
     void Shoot()
     {
         potato.isKinematic = false;
+        currentPosition.z = 0;
         Vector3 potatoForce = (currentPosition - center.position) * force * -1;
         potato.velocity = potatoForce;
+        potato.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ;
         potato = null;
         potatoCollider = null;
         throwsLeft -= 1;
-        throwScoreObject.UpdateScore(throwsLeft);
+        throwScoreObject.GetComponent<TextMeshProUGUI>().text = "Throws Left: " + throwsLeft;
         Invoke("CreatePotato", 1);
         if (throwsLeft == 0)
             timeLastShot = true;
@@ -141,17 +143,16 @@ public class Slingshot : MonoBehaviour
         SetStrips(currentPosition);
     }
 
-    void SetStrips(Vector3 postion)
+    void SetStrips(Vector3 position)
     {
-        lineRenderers[0].SetPosition(1, postion);
-        lineRenderers[1].SetPosition(1, postion);
-
+        lineRenderers[0].SetPosition(1, position);
+        lineRenderers[1].SetPosition(1, position);
         if (isMouseDown)
         {
-            Vector3 dir = postion - center.position;
+            Vector3 dir = position - center.position;
             if (potato)
             {
-                potato.transform.position = postion + dir.normalized * potatoOffset;
+                potato.transform.position = position + dir.normalized * potatoOffset;
                 potato.transform.right = -dir.normalized;
             }
         }

@@ -115,17 +115,14 @@ public class MasterGameController : MonoBehaviour
         GameObject.Find("MenuTheme").GetComponent<AudioSource>().Stop();
         // Gets the text of the button clicked and stores it to deactivate later
         string nextGame = button.GetComponentInChildren<TextMeshProUGUI>().text;
-        button.SetActive(false);
         Debug.Log("Loading " + nextGame + "...");
         int timesPlayed = 0;
-        if (gamesPlayed > 1)
+        for (int i = 0; i < gamesPlayed; i++)
         {
-            for (int i = gamesPlayed - 1; i >= 0; i--)
-            {
-                if (setList[i] == nextGame)
-                    timesPlayed++;
-            }
+            if (setList[i] == nextGame)
+                timesPlayed++;
         }
+        Debug.Log(timesPlayed);
         switch (timesPlayed)
         {
             case 1: nextDifficulty = gameDifficulty.Medium; break;

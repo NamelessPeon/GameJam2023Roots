@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
         else if (curState == gameState.Playing && gameTimer <= 0)
         {
             killbox.SetActive(false);
-            Player.GetComponent<PlayerMovement>().startMoving = false;
+            Player.GetComponent<CapsuleCollider>().enabled = false;
             curState = gameState.Won;
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
