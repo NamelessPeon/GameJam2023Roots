@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour
             if (MasterController && curState == gameState.Won)
             {
                 MasterController.gamesPlayed++;
+                MasterController.timesPlayed["SwingingVine"]++;
                 SceneManager.LoadScene("TreeScene");
             }
             else

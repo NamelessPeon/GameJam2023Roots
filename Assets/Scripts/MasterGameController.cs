@@ -21,6 +21,7 @@ public class MasterGameController : MonoBehaviour
     private GameObject[] levelScreens;
     private GameObject winScreen;
     public List<string> levelProg = new List<string>();
+    public Dictionary<string, int> timesPlayed = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -41,6 +42,9 @@ public class MasterGameController : MonoBehaviour
                 setList.Add(game);
             }
         }
+
+        for (int i = 0; i < gameTypes.Count(); i++)
+            timesPlayed.Add(gameTypes[i], 0);
 
         // Shuffle setList
         var temp = new List<string>(setList);
@@ -115,15 +119,8 @@ public class MasterGameController : MonoBehaviour
         GameObject.Find("MenuTheme").GetComponent<AudioSource>().Stop();
         // Gets the text of the button clicked and stores it to deactivate later
         string nextGame = button.GetComponentInChildren<TextMeshProUGUI>().text;
-        Debug.Log("Loading " + nextGame + "...");
-        int timesPlayed = 0;
-        for (int i = 0; i < gamesPlayed; i++)
-        {
-            if (setList[i] == nextGame)
-                timesPlayed++;
-        }
-        Debug.Log(timesPlayed);
-        switch (timesPlayed)
+        int times = timesPlayed[nextGame];
+        switch (times)
         {
             case 1: nextDifficulty = gameDifficulty.Medium; break;
             case 2: nextDifficulty = gameDifficulty.Hard; break;

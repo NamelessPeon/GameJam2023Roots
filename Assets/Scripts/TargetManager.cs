@@ -35,6 +35,7 @@ public class TargetManager : MonoBehaviour
             if (MasterController)
             {
                 MasterController.gamesPlayed++;
+                MasterController.timesPlayed["Angry Potato"]++;
                 SceneManager.LoadScene("TreeScene");
             }
             else

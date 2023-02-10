@@ -96,6 +96,7 @@ public class RootingUI : MonoBehaviour
             if (MasterController && curState == gameState.Won)
             {
                 MasterController.gamesPlayed++;
+                MasterController.timesPlayed["RootingAround"]++;
                 SceneManager.LoadScene("TreeScene");
             }
             else
