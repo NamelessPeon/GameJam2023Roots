@@ -19,7 +19,7 @@ public class Angry_Kill_Box : MonoBehaviour
         PlayerMovement playerScript = player.GetComponent<PlayerMovement>();
         if (playerScript.startMoving)
         {
-            rb.velocity = new Vector3((playerScript.speed - 5) * Time.deltaTime, 0.0f, 0.0f);
+            rb.velocity = new Vector3((playerScript.speed - 10) * Time.deltaTime, 0.0f, 0.0f);
         }
     }
 }

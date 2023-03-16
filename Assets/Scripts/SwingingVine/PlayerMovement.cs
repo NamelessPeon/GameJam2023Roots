@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
                 cam.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                 moveVector.y -= 7.0f * Time.deltaTime;
-                moveVector.x *= 0.90f;
+                //moveVector.x *= 0.95f;
                 sound[0].Play();
                 moveVector.y -= 10.0f * Time.deltaTime;
                 //moveVector.x *= 0.90f;
