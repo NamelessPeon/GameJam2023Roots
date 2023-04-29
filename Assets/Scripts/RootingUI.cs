@@ -13,6 +13,7 @@ public class RootingUI : MonoBehaviour
     public TextMeshProUGUI Timer;
     public GameObject TutorialContainer;
     public GameObject Pizza = null;
+    public GameObject Player;
     public enum gameState { Tutorial, Playing, Lost, Won }
     public gameState curState = gameState.Tutorial;
     public float gameTimer;
@@ -33,6 +34,19 @@ public class RootingUI : MonoBehaviour
         }
         else
             curDifficulty = gameDifficulty.Medium;
+
+        if (curDifficulty == gameDifficulty.Easy)
+        {
+            gameTimer = 30;
+        }
+        else if (curDifficulty == gameDifficulty.Medium)
+        {
+            gameTimer = 20;
+        }
+        else
+        {
+            gameTimer = 15;
+        }
     }
 
     void Update()
@@ -56,6 +70,7 @@ public class RootingUI : MonoBehaviour
             CountDown.text = "0";
             CountDown.gameObject.SetActive(false);
             TutorialContainer.SetActive(false);
+            Player.GetComponent<RootinRacoonScript>().play = true;
             curState = gameState.Playing;
         }
         else if (Pizza.GetComponent<RootinPizzaScript>().AmountOnPizza() <= .2f && curState == gameState.Playing)
@@ -64,7 +79,6 @@ public class RootingUI : MonoBehaviour
             curState = gameState.Won;
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
-        
         else if (curState == gameState.Playing && gameTimer <= 0)
         {
             Stamina.gameObject.SetActive(false);
@@ -72,16 +86,17 @@ public class RootingUI : MonoBehaviour
             UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
         }
         
-        else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
+        if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
         {
+            Player.GetComponent<RootinRacoonScript>().play = false;
             endTimer -= Time.deltaTime;
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
         {
             if (MasterController && curState == gameState.Won)
             {
-                MasterController.gamesPlayed.Add("RootingAround");
-                MasterController.difficultiesPlayed.Add(curDifficulty);
+                MasterController.gamesPlayed++;
+                MasterController.timesPlayed["RootingAround"]++;
                 SceneManager.LoadScene("TreeScene");
             }
             else
@@ -93,6 +108,11 @@ public class RootingUI : MonoBehaviour
     {
         curState = gameState.Lost;
         Timer.gameObject.SetActive(false);
+        if (MasterController)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("MenuMusic"));
+            Destroy(MasterController.gameObject);
+        }
         UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
     }
 }

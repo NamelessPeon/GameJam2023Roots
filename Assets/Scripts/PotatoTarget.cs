@@ -16,7 +16,6 @@ public class PotatoTarget : MonoBehaviour
     {
         if (other.tag == "Potato")
         {
-            print("something");
             targetManagerGameObject.numberOfTargets -= 1;
             Destroy(this.gameObject);
         }

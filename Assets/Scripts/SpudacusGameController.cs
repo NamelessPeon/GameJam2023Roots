@@ -39,16 +39,19 @@ public class SpudacusGameController : MonoBehaviour
         if (curDifficulty == gameDifficulty.Easy)
         {
             gameTimer = 20;
+            //gameTimer = 0;
             spawnScript.Spawn_Delay = 2.5f;
         }
         else if (curDifficulty == gameDifficulty.Medium)
         {
             gameTimer = 30;
+            //gameTimer = 0;
             spawnScript.Spawn_Delay = 2.0f;
         }
         else
         {
             gameTimer = 45;
+            //gameTimer = 0;
             spawnScript.Spawn_Delay = 1.0f;
         }
         music = GetComponents<AudioSource>();
@@ -88,15 +91,15 @@ public class SpudacusGameController : MonoBehaviour
             Playa.SetActive(false);
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
-        { 
+        {
             if (MasterController && curState == gameState.Won)
             {
-                MasterController.gamesPlayed.Add("Spudacus");
-                MasterController.difficultiesPlayed.Add(curDifficulty);
+                MasterController.gamesPlayed++;
+                MasterController.timesPlayed["Spudacus"]++;
                 SceneManager.LoadScene("TreeScene");
             }
             else
-                SceneManager.LoadScene("MainMenu"); 
+                SceneManager.LoadScene("MainMenu");
         }
     }
 
@@ -106,7 +109,10 @@ public class SpudacusGameController : MonoBehaviour
         Timer.gameObject.SetActive(false);
         SpawnController.GetComponent<Spawn_Controller>().Can_Spawn = false;
         if (MasterController)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("MenuMusic"));
             Destroy(MasterController.gameObject);
+        }
         UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
     }
 }

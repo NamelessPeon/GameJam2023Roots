@@ -13,19 +13,28 @@ public class GameController : MonoBehaviour
     public GameObject TutorialContainer;
     public GameObject Player;
 
-    public enum gameDifficulty { Easy, Medium, Hard }
     public enum gameState { Tutorial, Playing, Lost, Won }
     public gameState curState = gameState.Tutorial;
     public float gameTimer;
     public float tutorialTimer = 5;
-    public gameDifficulty curDifficulty = gameDifficulty.Easy;
+    public gameDifficulty curDifficulty;
     private float endTimer = 5;
+    private MasterGameController MasterController;
+    public GameObject killbox;
 
     private AudioSource[] music;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject MCObj = GameObject.FindGameObjectWithTag("MC");
+        if (MCObj)
+        {
+            MasterController = MCObj.GetComponent<MasterGameController>();
+            curDifficulty = MasterController.nextDifficulty;
+        }
+        else
+            curDifficulty = gameDifficulty.Medium;
         if (curDifficulty == gameDifficulty.Easy)
         {
             gameTimer = 20;
@@ -64,22 +73,37 @@ public class GameController : MonoBehaviour
         }
         else if (curState == gameState.Playing && gameTimer <= 0)
         {
+            killbox.SetActive(false);
+            Player.GetComponent<CapsuleCollider>().enabled = false;
             curState = gameState.Won;
             UI.GetComponent<Spudacus_UI>().LoadVictoryScreen();
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer > 0)
         {
             endTimer -= Time.deltaTime;
-            //Player.SetActive(false);
         }
         else if ((curState == gameState.Lost || curState == gameState.Won) && endTimer <= 0)
-            SceneManager.LoadScene("MainMenu");
+        {
+            if (MasterController && curState == gameState.Won)
+            {
+                MasterController.gamesPlayed++;
+                MasterController.timesPlayed["SwingingVine"]++;
+                SceneManager.LoadScene("TreeScene");
+            }
+            else
+                SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void GameOver()
     {
         curState = gameState.Lost;
         Timer.gameObject.SetActive(false);
+        if (MasterController)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("MenuMusic"));
+            Destroy(MasterController.gameObject);
+        }
         UI.GetComponent<Spudacus_UI>().LoadDeathScreen();
     }
 }
